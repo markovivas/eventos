@@ -171,11 +171,15 @@
 
 .em-event-list {
     width: 100%;
-    margin-top: 5px;
+    margin-top: 8px;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 5px;
     overflow: hidden;
+}
+
+.em-calendario-wrapper[data-view="full"] .em-dia-celula.has-event {
+    background: linear-gradient(180deg, #f8fbff 0%, #f2f7fd 100%);
 }
 
 .em-event {
@@ -184,16 +188,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 12px;
-    padding: 2px 6px;
-    border-radius: 3px;
-    color: #fff;
-    background-color: #3498db;
+    font-weight: 600;
+    line-height: 1.35;
+    padding: 5px 8px;
+    border-radius: 8px;
+    color: #184a7a;
+    background: linear-gradient(135deg, #dff1ff 0%, #c9e7ff 100%);
+    border-left: 3px solid #2f80c3;
+    box-shadow: 0 1px 2px rgba(24, 74, 122, 0.10);
     text-decoration: none;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .em-event:hover {
-    background-color: #217dbb;
+    background: linear-gradient(135deg, #cfe9ff 0%, #b7dcfb 100%);
+    box-shadow: 0 3px 8px rgba(24, 74, 122, 0.14);
+    transform: translateY(-1px);
 }
 
 /* --- Estilos para Tela Cheia --- */
@@ -301,5 +311,241 @@ body.em-fullscreen-active {
 
     .evento-info-list li strong {
         min-width: auto;
+    }
+}
+
+/* Refinos visuais da página individual do evento */
+.single-evento-container {
+    max-width: 920px;
+    margin: 36px auto;
+    padding: 0;
+    background: #ffffff;
+    border: 1px solid #e4edf5;
+    border-radius: 24px;
+    box-shadow: 0 18px 40px rgba(25, 61, 93, 0.10);
+    overflow: hidden;
+}
+
+.evento-header {
+    text-align: left;
+    margin-bottom: 0;
+    padding: 48px 40px 32px;
+    background:
+        radial-gradient(circle at top right, rgba(79, 149, 214, 0.18), transparent 32%),
+        linear-gradient(135deg, #f4f9fe 0%, #eef5fb 100%);
+    border-bottom: 1px solid #e4edf5;
+}
+
+.evento-header-inner {
+    max-width: 700px;
+}
+
+.evento-eyebrow {
+    margin: 0 0 12px;
+    color: #2f80c3;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.evento-header h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: #17324d;
+    margin: 0 0 18px;
+    line-height: 1.12;
+}
+
+.evento-meta-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.evento-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid #d6e6f4;
+    color: #2d567d;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.evento-chip-highlight {
+    background: #2f80c3;
+    border-color: #2f80c3;
+    color: #fff;
+}
+
+.evento-featured-image-section {
+    max-width: 920px;
+    margin: 18px auto 36px;
+    text-align: center;
+}
+
+.evento-gallery-header {
+    max-width: 680px;
+    margin: 0 auto 18px;
+    padding: 0 12px;
+}
+
+.evento-gallery-eyebrow {
+    margin: 0 0 8px;
+    color: #2f80c3;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.evento-gallery-header h2 {
+    margin: 0;
+    color: #17324d;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.15;
+}
+
+.evento-featured-image-container {
+    padding: 24px;
+    background: linear-gradient(180deg, #eef5fb 0%, #ffffff 100%);
+    border: 1px solid #e4edf5;
+    border-radius: 24px;
+    box-shadow: 0 18px 40px rgba(25, 61, 93, 0.08);
+}
+
+.evento-featured-image-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 720px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 20px;
+    border: 1px solid #dfeaf3;
+    background: #f8fbfd;
+    box-shadow: 0 14px 30px rgba(23, 50, 77, 0.10);
+}
+
+.evento-details {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) 1fr;
+    gap: 28px;
+    padding: 32px 40px 40px;
+}
+
+.evento-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.evento-info-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 16px 18px;
+    background: #f8fbfd;
+    border: 1px solid #e3edf5;
+    border-radius: 16px;
+    color: #38536d;
+}
+
+.evento-info-list li strong {
+    min-width: auto;
+    color: #17324d;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.evento-tipo {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #e2f1ff;
+    color: #1f5f96;
+    font-weight: 700;
+}
+
+.evento-content-card {
+    padding: 28px 30px;
+    background: #fff;
+    border: 1px solid #e3edf5;
+    border-radius: 20px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.evento-content {
+    color: #31475d;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.evento-content > :first-child {
+    margin-top: 0;
+}
+
+.evento-content > :last-child {
+    margin-bottom: 0;
+}
+
+.evento-content h2,
+.evento-content h3,
+.evento-content h4 {
+    color: #17324d;
+    line-height: 1.25;
+}
+
+.evento-content a {
+    color: #2169a8;
+}
+
+@media (max-width: 800px) {
+    .evento-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .single-evento-container {
+        margin: 24px auto;
+        border-radius: 18px;
+        padding: 0;
+    }
+
+    .evento-header {
+        padding: 32px 20px 24px;
+    }
+
+    .evento-featured-image-section {
+        margin: 16px auto 24px;
+    }
+
+    .evento-gallery-header {
+        margin-bottom: 14px;
+    }
+
+    .evento-featured-image-container {
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .evento-details {
+        padding: 24px 20px 28px;
+        gap: 20px;
+    }
+
+    .evento-info-list li {
+        padding: 14px 16px;
+    }
+
+    .evento-content-card {
+        padding: 22px 18px;
     }
 }
