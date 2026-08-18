@@ -3,9 +3,10 @@
  * Plugin Name: Gerenciador de Eventos
  * Description: Plugin para cadastro e exibição de eventos com calendário.  
  * Shortcodes disponíveis: [mostra-calendario], [mostra-prox-eventos limit="5" tipo=""], [eventos-completo], [mostra-calendario-widget]
- * Version: 1.0
+ * Version: 1.1.0
  * Author: Marco Antonio Vivas
  * Text Domain: gerenciador-eventos
+ * Update URI: false
  */
 
 
@@ -33,6 +34,17 @@ class Eventos_Manager {
         add_action('wp_ajax_get_eventos_calendario', array($this, 'get_eventos_calendario'));
         add_action('wp_ajax_nopriv_get_eventos_calendario', array($this, 'get_eventos_calendario'));
         add_filter('single_template', array($this, 'load_single_template'));
+        add_filter('site_transient_update_plugins', array($this, 'disable_plugin_update_notice'));
+    }
+
+    public function disable_plugin_update_notice($transient) {
+        $plugin_file = plugin_basename(__FILE__);
+
+        if (isset($transient->response[$plugin_file])) {
+            unset($transient->response[$plugin_file]);
+        }
+
+        return $transient;
     }
 
     public function enqueue_scripts() {
