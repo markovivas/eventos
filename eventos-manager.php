@@ -108,8 +108,17 @@ class Eventos_Manager {
                 $tipos = get_the_terms(get_the_ID(), 'tipo_evento');
                 $tipo = !empty($tipos) && !is_wp_error($tipos) ? $tipos[0]->name : '';
 
+                // Usa o título bruto (sem filtros) e decodifica entidades,
+                // pois o JS insere com .text() e escaparia de novo.
+                $titulo = get_post()->post_title;
+                $decodificado = wp_specialchars_decode($titulo, ENT_QUOTES);
+                while ($decodificado !== $titulo && preg_match('/&(amp|lt|gt|quot|#039);/', $decodificado)) {
+                    $titulo = $decodificado;
+                    $decodificado = wp_specialchars_decode($titulo, ENT_QUOTES);
+                }
+
                 $calendar_events[] = array(
-                    'title' => get_the_title(),
+                    'title' => $decodificado,
                     'start' => $data_evento . ($hora_evento ? 'T' . $hora_evento : ''),
                     'tipo' => $tipo,
                     'url' => get_permalink()
